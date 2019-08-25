@@ -35,6 +35,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor.Demo.ServerS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChartJs.Blazor", "Upgrade\src\ChartJs.Blazor\ChartJs.Blazor.csproj", "{EF61BCB5-2117-4792-B5EA-63B14077BF09}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{85910985-FFA9-4D1E-A105-2BEF566B6737}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChartJs.Blazor.Shared", "Upgrade\samples\Shared\ChartJs.Blazor.Shared\ChartJs.Blazor.Shared.csproj", "{BCE8F08D-0EA4-449B-A39B-F90A90541C84}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,10 @@ Global
 		{EF61BCB5-2117-4792-B5EA-63B14077BF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF61BCB5-2117-4792-B5EA-63B14077BF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF61BCB5-2117-4792-B5EA-63B14077BF09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCE8F08D-0EA4-449B-A39B-F90A90541C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCE8F08D-0EA4-449B-A39B-F90A90541C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCE8F08D-0EA4-449B-A39B-F90A90541C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCE8F08D-0EA4-449B-A39B-F90A90541C84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +95,8 @@ Global
 		{5FBB6C2A-795F-416B-B2C2-96C87DEAD70F} = {9C3A3BFF-3634-48E1-9488-E6580022ABF0}
 		{09DA8EE6-584B-4E8E-897E-010B159678EC} = {9C3A3BFF-3634-48E1-9488-E6580022ABF0}
 		{EF61BCB5-2117-4792-B5EA-63B14077BF09} = {0DC008F1-92DF-4F77-B973-9A61710DC0B7}
+		{85910985-FFA9-4D1E-A105-2BEF566B6737} = {6D45B164-FFF2-43F4-B58A-0F65C8543AE5}
+		{BCE8F08D-0EA4-449B-A39B-F90A90541C84} = {85910985-FFA9-4D1E-A105-2BEF566B6737}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B9B5C87-8AF0-4846-81C5-798F5C654FB6}

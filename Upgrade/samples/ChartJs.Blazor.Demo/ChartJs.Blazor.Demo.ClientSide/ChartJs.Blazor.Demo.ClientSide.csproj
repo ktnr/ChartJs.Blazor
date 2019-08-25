@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Blazor.HttpClient" Version="3.0.0-preview8.19405.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\ChartJs.Blazor.Shared\ChartJs.Blazor.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
