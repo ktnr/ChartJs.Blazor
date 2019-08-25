@@ -8,37 +8,39 @@
 <div class="row">
     <button class="btn btn-primary" @onclick="@UpdateChart">Update Chart </button>
 </div>
-<ChartJsBarChart ref="barChart"
-                 Config="@barChartConfig"
+<ChartJsBarChart @ref="_barChart"
+                 @ref:suppressField
+                 Config="@BarChartConfig"
                  Width="600"
                  Height="300" />
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" 
+                      @bind-DataStr="@DataStr" Width="600" Height="300" />
 
 @code {
 
-    private BarChartConfig barChartConfig { get; set; }
-    private ChartJsBarChart barChart { get; set; }
+    BarChartConfig BarChartConfig { get; set; }
+    private ChartJsBarChart _barChart;
 
     string DataStr
     {
-        get => JsonConvert.SerializeObject(barChartConfig.Data, Formatting.Indented);
+        get => JsonConvert.SerializeObject(BarChartConfig.Data, Formatting.Indented);
         set
         {
-            barChartConfig.Data = JsonConvert.DeserializeObject<BarChartData>(value);
-            Console.WriteLine(JsonConvert.SerializeObject(barChartConfig.Data));
+            BarChartConfig.Data = JsonConvert.DeserializeObject<BarChartData>(value);
+            Console.WriteLine(JsonConvert.SerializeObject(BarChartConfig.Data));
         }
     }
 
     void OnDataStrChange(string dataStr)
     {
-        barChartConfig.Data = JsonConvert.DeserializeObject<BarChartData>(dataStr);
-        barChart.Update();
+        BarChartConfig.Data = JsonConvert.DeserializeObject<BarChartData>(dataStr);
+        _barChart.Update();
     }
 
     protected override void OnInitialized()
     {
-        barChartConfig = barChartConfig ?? new BarChartConfig
+        BarChartConfig = BarChartConfig ?? new BarChartConfig
         {
             CanvasId = "myBarChartCanvas",
             Options = new BarChartOptions
@@ -82,8 +84,8 @@
     {
         //Update existing dataset
 
-        barChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
-        barChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
+        BarChartConfig.Data.Labels.Add($"{DateTime.Now.Second}");
+        BarChartConfig.Data.Datasets.ForEach(dataset => { dataset.Data.Add(DateTime.Now.Second); });
     }
 
 }
