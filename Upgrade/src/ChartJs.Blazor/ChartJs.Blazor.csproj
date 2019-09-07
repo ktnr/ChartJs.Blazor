@@ -28,7 +28,14 @@ Chart Legend with custom handler for Item generation and events - Jvascript and 
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="dist\ChartJsInterop.js">
+    <None Remove="Util\Color\ChartJsInterop.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="dist\ChartJsInterop.js_old">
+      <LogicalName>blazor:js:%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wwwroot\ChartJsInterop.js">
       <LogicalName>blazor:js:%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
@@ -37,11 +44,6 @@ Chart Legend with custom handler for Item generation and events - Jvascript and 
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-preview8.19405.7" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="dist\" />
-    <Folder Include="Util\Color\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -89,6 +91,15 @@ Chart Legend with custom handler for Item generation and events - Jvascript and 
     <Content Update="Charts\_Imports.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
+    </Content>
+    <Content Update="wwwroot\background.png">
+      <LogicalName>blazor:file:%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+    </Content>
+    <Content Update="wwwroot\exampleJsInterop.js">
+      <LogicalName>blazor:js:%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+    </Content>
+    <Content Update="wwwroot\styles.css">
+      <LogicalName>blazor:css:%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
     </Content>
   </ItemGroup>
 

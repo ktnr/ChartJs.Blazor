@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using ChartJs.Blazor.ChartJS.Common;
 using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler;
 using ChartJs.Blazor.ChartJS.Common.Legends.OnHover;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 
 namespace ChartJs.Blazor.ChartJS
