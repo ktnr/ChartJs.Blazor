@@ -41,7 +41,8 @@ Chart Legend with custom handler for Item generation and events - Jvascript and 
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-preview8.19405.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="3.0.0-rc1.19457.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.0.0-rc1.19457.4" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
@@ -100,6 +101,9 @@ Chart Legend with custom handler for Item generation and events - Jvascript and 
     </Content>
     <Content Update="wwwroot\styles.css">
       <LogicalName>blazor:css:%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+    </Content>
+    <Content Update="_Imports.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 

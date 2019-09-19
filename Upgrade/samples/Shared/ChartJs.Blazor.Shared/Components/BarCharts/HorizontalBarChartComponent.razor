@@ -13,7 +13,6 @@
     <button class="btn btn-primary" @onclick="@(()=>UpdateChart())">Update Chart </button>
 </div>
 <ChartJsBarChart @ref="_barChart"
-                 @ref:suppressField
                  Config="@BarChartConfig"
                  Width="600"
                  Height="300" />
@@ -62,7 +61,7 @@
             {
                 Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
                 Datasets = new List<BaseBarChartDataset>
-        {
+    {
                     new BarChartDataset
                     {
                         Label = "1'st dataset",

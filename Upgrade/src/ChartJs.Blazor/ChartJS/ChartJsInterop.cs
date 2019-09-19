@@ -1,21 +1,19 @@
-﻿using Microsoft.JSInterop;
-using System.Threading.Tasks;
-using ChartJs.Blazor.ChartJS.Common;
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
+﻿using ChartJs.Blazor.ChartJS.Common;
 using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler;
 using ChartJs.Blazor.ChartJS.Common.Legends.OnHover;
+using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
+using System;
+using System.Dynamic;
+using System.Threading.Tasks;
 
 namespace ChartJs.Blazor.ChartJS
 {
     public static class ChartJsInterop
     {
-        public static Task<bool> SetupChart(this IJSRuntime jsRuntime, ChartConfigBase chartConfig)
+        public static ValueTask<bool> SetupChart(this IJSRuntime jsRuntime, ChartConfigBase chartConfig)
         {
             try
             {
@@ -25,10 +23,10 @@ namespace ChartJs.Blazor.ChartJS
             {
             }
 
-            return Task.FromResult<bool>(false);
+            return new ValueTask<bool>(false);
         }
 
-        public static Task<bool> UpdateChart(this IJSRuntime jsRuntime, ChartConfigBase chartConfig)
+        public static ValueTask<bool> UpdateChart(this IJSRuntime jsRuntime, ChartConfigBase chartConfig)
         {
             try
             {
@@ -38,7 +36,7 @@ namespace ChartJs.Blazor.ChartJS
             {
             }
 
-            return Task.FromResult<bool>(false);
+            return new ValueTask<bool>(false);
         }
 
         /// <summary>
@@ -61,7 +59,7 @@ namespace ChartJs.Blazor.ChartJS
                 new ExpandoObjectConverter());
 
             // Restore any .net refs that need to be passed intact
-            var dynamicChartConfig = (dynamic) chartConfig;
+            var dynamicChartConfig = (dynamic)chartConfig;
             if (dynamicChartConfig?.Options?.Legend?.OnClick != null
                 && dynamicChartConfig?.Options?.Legend?.OnClick is DotNetInstanceClickHandler)
             {

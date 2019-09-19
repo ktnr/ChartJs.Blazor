@@ -1,15 +1,14 @@
-using System.Threading.Tasks;
-using ChartJs.Blazor;
 using ChartJs.Blazor.ChartJS;
 using ChartJs.Blazor.ChartJS.Common;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Threading.Tasks;
 
 namespace ChartJs.Blazor.Charts
 {
     public abstract class ChartBase<TConfig> : ComponentBase where TConfig : ChartConfigBase
     {
-        [Inject] IJSRuntime JsRuntime { get; set; }
+        [Inject] private IJSRuntime JsRuntime { get; set; }
 
         [Parameter] public TConfig Config { get; set; }
 
@@ -17,12 +16,12 @@ namespace ChartJs.Blazor.Charts
 
         [Parameter] public int Height { get; set; } = 400;
 
-        protected override Task OnAfterRenderAsync()
+        protected override Task OnAfterRenderAsync(bool firstRender)
         {
             try
             {
-                base.OnAfterRender();
-                return JsRuntime.SetupChart(Config);
+                base.OnAfterRenderAsync(firstRender);
+                return JsRuntime.SetupChart(Config).AsTask();
             }
             catch
             {

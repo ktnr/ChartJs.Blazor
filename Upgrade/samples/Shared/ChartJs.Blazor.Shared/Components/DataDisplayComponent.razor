@@ -49,7 +49,7 @@
     [Parameter]
     public int Rows { get; set; } = 25;
 
-    async void OnKeyUp(UIEventArgs args)
+    async void OnKeyUp(EventArgs args)
     {
         var datasetsTextAreaVal = await dataTextArea.GetValue(iJSRuntime).ConfigureAwait(false);
         OnUpdatedDataStr?.Invoke(datasetsTextAreaVal);
