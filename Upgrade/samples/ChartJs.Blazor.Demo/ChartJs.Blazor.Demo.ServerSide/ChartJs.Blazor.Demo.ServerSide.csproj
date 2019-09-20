@@ -31,6 +31,34 @@
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Charts\BubbleChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Charts\DoughnutChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Charts\ScatterChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Charts\RadarChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Charts\PolarAreaChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Charts\PieChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Charts\MixedChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\LineChart\FillLineChart.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>

@@ -8,9 +8,9 @@
 <div class="row">
     <button class="btn btn-primary" @onclick="(()=>UpdateChart())">Update Chart </button>
 </div>
-<ChartJsPieChart ref="pieChartJs" Config="@PieChartConfig" Width="600" Height="300" />
+<ChartJsPieChart @ref="_pieChartJs" Config="@PieChartConfig" Width="600" Height="300" />
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300" />
 
 @code{
 

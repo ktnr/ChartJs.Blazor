@@ -11,9 +11,9 @@
 <div class="row">
     <button class="btn btn-primary" @onclick="UpdateChart">Update Chart </button>
 </div>
-<ChartJsRadarChart ref="radarChartJs" Config="@RadarChartConfig" Width="600" Height="300" />
+<ChartJsRadarChart @ref="_radarChartJs" Config="@RadarChartConfig" Width="600" Height="300" />
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300" />
 
 @code {
 

@@ -6,13 +6,13 @@
 @using ChartJs.Blazor.ChartJS.PolarAreaChart
 @using Newtonsoft.Json
 
-<h2>Bubble Chart</h2>
+<h2>Polar Area Chart</h2>
 <div class="row">
     <button class="btn btn-primary" @onclick="@(() => UpdateChart())">Update Chart </button>
 </div>
-<ChartJsPolarAreaChart ref="polarAreaChart" Config="@PolarAreaChartConfig" Width="600" Height="300" />
+<ChartJsPolarAreaChart @ref="_polarAreaChart" Config="@PolarAreaChartConfig" Width="600" Height="300" />
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300" />
 
 @code{
 
