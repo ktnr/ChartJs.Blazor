@@ -8,6 +8,8 @@ namespace ChartJs.Blazor.Charts
 {
     public abstract class ChartBase<TConfig> : ComponentBase where TConfig : ChartConfigBase
     {
+        private bool _renderedOnce = false;
+
         [Inject] private IJSRuntime JsRuntime { get; set; }
 
         [Parameter] public TConfig Config { get; set; }
@@ -18,6 +20,8 @@ namespace ChartJs.Blazor.Charts
 
         protected override Task OnAfterRenderAsync(bool firstRender)
         {
+            _renderedOnce = _renderedOnce || firstRender;
+
             try
             {
                 base.OnAfterRenderAsync(firstRender);
@@ -32,6 +36,11 @@ namespace ChartJs.Blazor.Charts
 
         public async void Update()
         {
+            if (!_renderedOnce)
+            {
+                return;
+            }
+
             //await JsRuntime.Prompt("");
             await JsRuntime.UpdateChart(Config);
         }

@@ -18,13 +18,12 @@
     <div class="form-row">
         <textarea id="textAreaId"
                   colspan="2"
-                  ref="dataTextArea"
+                  @ref="dataTextArea"
                   class="form-control"
                   Width="@Width"
                   Height="@Height"
                   Rows="@Rows"
-                  @oninput="OnKeyUp"
-                  bind-value-onchange="@DataStr"
+                  @bind-value="@DataStr"
                   style="display: block; margin-left: auto; margin-right: auto"></textarea>
     </div>
 </form>

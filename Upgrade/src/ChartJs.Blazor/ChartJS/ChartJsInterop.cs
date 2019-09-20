@@ -4,9 +4,12 @@ using ChartJs.Blazor.ChartJS.Common.Legends.OnHover;
 using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Collections.Generic;
 using System.Dynamic;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ChartJs.Blazor.ChartJS
@@ -17,7 +20,8 @@ namespace ChartJs.Blazor.ChartJS
         {
             try
             {
-                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", StripNulls(chartConfig));
+                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", StripNulls2(chartConfig));
+                //return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", chartConfig);
             }
             catch (Exception exp)
             {
@@ -30,7 +34,8 @@ namespace ChartJs.Blazor.ChartJS
         {
             try
             {
-                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.UpdateChart", StripNulls(chartConfig));
+                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.UpdateChart", StripNulls2(chartConfig));
+                //return jsRuntime.InvokeAsync<bool>("ChartJSInterop.UpdateChart", chartConfig);
             }
             catch (Exception exp)
             {
@@ -56,7 +61,7 @@ namespace ChartJs.Blazor.ChartJS
             // Get back an ExpandoObject dynamic with the clean config - having an ExpandoObject allows us to add/replace members regardless of type
             dynamic clearConfigExpando = JsonConvert.DeserializeObject(cleanChartConfigStr,
                 typeof(ExpandoObject),
-                new ExpandoObjectConverter());
+                new ExpandoObjectConverter(){});
 
             // Restore any .net refs that need to be passed intact
             var dynamicChartConfig = (dynamic)chartConfig;
@@ -76,8 +81,44 @@ namespace ChartJs.Blazor.ChartJS
                 clearConfigExpando.options.legend.onHover = dynamicChartConfig.Options.Legend.OnHover;
             }
 
-            return clearConfigExpando;
+            return new Dictionary<string, object>(clearConfigExpando);
         }
+
+        private static object StripNulls2(ChartConfigBase chartConfig)
+        {
+            // Serializing with the custom serializer settings remove null members
+            var cleanChartConfigStr = JsonConvert.SerializeObject(chartConfig, JsonSerializerSettings);
+
+            // Get back an ExpandoObject dynamic with the clean config - having an ExpandoObject allows us to add/replace members regardless of type
+            dynamic cleanChartConfig = System.Text.Json.JsonSerializer.Deserialize(cleanChartConfigStr, typeof(object));
+
+            // Restore any .net refs that need to be passed intact
+            var dynamicChartConfig = (dynamic)chartConfig;
+            if (dynamicChartConfig?.Options?.Legend?.OnClick != null
+                && dynamicChartConfig?.Options?.Legend?.OnClick is DotNetInstanceClickHandler)
+            {
+                cleanChartConfig.options = cleanChartConfig.options ?? new { };
+                cleanChartConfig.options.legend = cleanChartConfig.options.legend ?? new { };
+                cleanChartConfig.options.legend.onClick = dynamicChartConfig.Options.Legend.OnClick;
+            }
+
+            if (dynamicChartConfig?.Options?.Legend?.OnHover != null
+                && dynamicChartConfig?.Options?.Legend?.OnHover is DotNetInstanceHoverHandler)
+            {
+                cleanChartConfig.options = cleanChartConfig.options ?? new { };
+                cleanChartConfig.options.legend = cleanChartConfig.options.legend ?? new { };
+                cleanChartConfig.options.legend.onHover = dynamicChartConfig.Options.Legend.OnHover;
+            }
+
+            return cleanChartConfig;
+        }
+
+        public static JsonSerializerOptions JsonSerializerSettings2 => new JsonSerializerOptions()
+        {
+            IgnoreNullValues = true,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            
+        };
 
         private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
         {

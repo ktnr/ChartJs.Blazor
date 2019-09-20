@@ -3,8 +3,6 @@
 @using ChartJs.Blazor.ChartJS.BarChart
 @using ChartJs.Blazor.ChartJS.BarChart.Dataset
 @using ChartJs.Blazor.ChartJS.Common.Legends
-@using ChartJs.Blazor.Charts
-@using ChartJs.Blazor.Util.Color
 @using Newtonsoft.Json
 @using Formatting = Newtonsoft.Json.Formatting
 
@@ -13,7 +11,7 @@
     <button class="btn btn-primary" @onclick="@(()=>UpdateChart())">Update Chart </button>
 </div>
 <ChartJsBarChart @ref="_barChart"
-                 Config="@BarChartConfig"
+                 Config="BarChartConfig"
                  Width="600"
                  Height="300" />
 
@@ -38,8 +36,15 @@
 
     void OnDataStrChange(string dataStr)
     {
-        BarChartConfig.Data = JsonConvert.DeserializeObject<BarChartData>(dataStr);
-        _barChart.Update();
+        try
+        {
+            BarChartConfig.Data = JsonConvert.DeserializeObject<BarChartData>(dataStr);
+            _barChart?.Update();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+        }
     }
 
     protected override void OnInitialized()
@@ -61,7 +66,7 @@
             {
                 Labels = new List<string> { "Red", "Blue", "Yellow", "Green", "Purple", "Orange" },
                 Datasets = new List<BaseBarChartDataset>
-    {
+{
                     new BarChartDataset
                     {
                         Label = "1'st dataset",
