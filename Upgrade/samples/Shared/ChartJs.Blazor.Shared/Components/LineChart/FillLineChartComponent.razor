@@ -1,8 +1,7 @@
-﻿OnInitialized@using ChartJs.Blazor.ChartJS.Common
+﻿@using ChartJs.Blazor.ChartJS.Common
 @using System
 @using System.Collections.Generic
 @using System.Linq
-@using ChartJs.Blazor.ChartJS.Common
 @using ChartJs.Blazor.ChartJS.LineChart
 @using Newtonsoft.Json
 
@@ -10,9 +9,9 @@
 <div class="row">
     <button class="btn btn-primary" @onclick="UpdateChart">Update Chart </button>
 </div>
-<ChartJsLineChart ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
+<ChartJsLineChart @ref="lineChartJs" Config="@lineChartConfig" Width="600" Height="300" />
 
-<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" bind-DataStr="@DataStr" Width="600" Height="300" />
+<DataDisplayComponent OnUpdatedDataStr="@OnDataStrChange" @bind-DataStr="@DataStr" Width="600" Height="300" />
 
 @code{
 
@@ -54,7 +53,7 @@
                 Scales = new Scales
                 {
                     xAxes = new List<Axis>
-    {
+{
                     new Axis
                     {
                         ScaleLabel = new ScaleLabel
@@ -64,7 +63,7 @@
                     }
                 },
                     yAxes = new List<Axis>
-    {
+{
                     new Axis
                     {
                         ScaleLabel = new ScaleLabel

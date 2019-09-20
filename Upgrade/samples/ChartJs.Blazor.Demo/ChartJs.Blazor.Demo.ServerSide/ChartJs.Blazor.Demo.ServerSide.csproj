@@ -31,6 +31,14 @@
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\LineChart\FillLineChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\LineChart\LineChart.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
