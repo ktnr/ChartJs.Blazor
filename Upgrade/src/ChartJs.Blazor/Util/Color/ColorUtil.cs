@@ -30,6 +30,19 @@ namespace ChartJs.Blazor.Util.Color
         }
 
         /// <summary>
+        /// Produces a string of the form '#aabbc' with the provided rgb values
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="g"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static string RandomColorHexString()
+        {
+            var rand = new Random();
+            return $"#{rand.Next(255):X2}{rand.Next(255):X2}{rand.Next(255):X2}";
+        }
+
+        /// <summary>
         /// Produces a string of the form 'rgba(r, g, b, 1)' with the provided rgb and alpha values
         /// </summary>
         /// <param name="r"></param>

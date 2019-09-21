@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ChartJs.Blazor.Demo.ServerSide.Data;
+using Sotsera.Blazor.Toaster.Core.Models;
 
 namespace ChartJs.Blazor.Demo.ServerSide
 {
@@ -28,8 +22,14 @@ namespace ChartJs.Blazor.Demo.ServerSide
         {
             services.AddRazorPages();
             services.AddServerSideBlazor().AddCircuitOptions(opt => { opt.DetailedErrors = true; });
-            services.AddSingleton<WeatherForecastService>();
-            services.AddMvc().AddNewtonsoftJson();
+            services.AddMvc();
+
+            services.AddToaster(cfg =>
+            {
+                cfg.PositionClass = Defaults.Classes.Position.TopRight;
+                cfg.PreventDuplicates = true;
+                cfg.NewestOnTop = false;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

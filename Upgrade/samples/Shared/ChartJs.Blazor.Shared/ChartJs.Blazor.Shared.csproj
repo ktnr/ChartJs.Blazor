@@ -60,17 +60,17 @@
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
     </Content>
-    <Content Update="Components\Legend\DotNetInstanceHandlersComponent.razor">
+    <Content Update="Components\Handlers\DotNetInstanceHandlersComponent.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Legend\DotNetStaticHandlersComponent.razor">
+    <Content Update="Components\Handlers\DotNetStaticHandlersComponent.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Components\Legend\JsHandlersComponent.razor">
+    <Content Update="Components\Handlers\JsHandlersComponent.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
       <Pack>$(IncludeRazorContentInPack)</Pack>

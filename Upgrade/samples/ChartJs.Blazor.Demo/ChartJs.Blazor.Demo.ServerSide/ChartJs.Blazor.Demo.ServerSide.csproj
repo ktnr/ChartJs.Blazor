@@ -59,6 +59,18 @@
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Pages\Handlers\JsHandler.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Handlers\DotNetStaticHandler.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Handlers\DotNetInstanceHandler.razor">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\LineChart\FillLineChart.razor">
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>

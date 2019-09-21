@@ -3,6 +3,7 @@
 
 window.ChartJSInterop = {
     SetupChart: function (config) {
+        config = stripNulls(config);
 
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId)) {
             if (!config.options.legend)
@@ -19,13 +20,13 @@ window.ChartJSInterop = {
 
             let newChart = initializeChartjsChart2(config);
             myChart.chart = newChart;
-
         }
 
         return true;
     },
 
     UpdateChart: function (config) {
+        config = stripNulls(config);
 
         if (!BlazorCharts.find(currentChart => currentChart.id === config.canvasId))
             throw `Could not find a chart with the given id. ${config.canvasId}`;
@@ -48,7 +49,20 @@ window.ChartJSInterop = {
 
 var BlazorCharts = [];
 
-//Blazor.BlazorCharts = BlazorCharts;
+function stripNulls(obj) {
+    function nullSkipper(key, value) {
+        if (value === null) {
+            return undefined;
+        }
+        return value;
+    }
+
+    const result = JSON.parse(JSON.stringify(obj, nullSkipper));
+
+    // fix broken click/hover handlers
+
+    return result;
+}
 
 function initializeChartjsChart2(config) {
     let ctx = document.getElementById(config.canvasId);

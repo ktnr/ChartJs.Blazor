@@ -11,12 +11,12 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
         /// <summary>
         /// The fill color of the bar
         /// </summary>
-        public string BackgroundColor { get; set; } = ColorUtil.ColorString(128, 128, 128, 0.35);
+        public string BackgroundColor { get; set; } 
 
         /// <summary>
         /// The color of the bar border.
         /// </summary>
-        public string BorderColor { get; set; } = ColorUtil.ColorString(128, 128, 128, 0.35);
+        public string BorderColor { get; set; } 
 
         /// <summary>
         /// The stroke width of the bar in pixels.
@@ -26,12 +26,12 @@ namespace ChartJs.Blazor.ChartJS.BarChart.Dataset
         /// <summary>
         /// The fill color of the bars when hovered.
         /// </summary>
-        public string HoverBackgroundColor { get; set; } = ColorUtil.ColorString(128, 128, 128, 0.35);
+        public string HoverBackgroundColor { get; set; } 
 
         /// <summary>
         /// The stroke color of the bars when hovered.
         /// </summary>
-        public string HoverBorderColor { get; set; } = ColorUtil.ColorString(128, 128, 128, 0.35);
+        public string HoverBorderColor { get; set; } 
 
         /// <summary>
         /// The stroke width of the bars when hovered.

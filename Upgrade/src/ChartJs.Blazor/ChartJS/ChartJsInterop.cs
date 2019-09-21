@@ -3,8 +3,11 @@ using ChartJs.Blazor.ChartJS.Common.Legends.OnClickHandler;
 using ChartJs.Blazor.ChartJS.Common.Legends.OnHover;
 using Microsoft.JSInterop;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
+using System.Dynamic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ChartJs.Blazor.ChartJS
@@ -15,7 +18,8 @@ namespace ChartJs.Blazor.ChartJS
         {
             try
             {
-                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", StripNulls(chartConfig));
+                //return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", StripNulls(chartConfig));
+                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.SetupChart", chartConfig);
             }
             catch (Exception ex)
             {
@@ -29,7 +33,8 @@ namespace ChartJs.Blazor.ChartJS
         {
             try
             {
-                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.UpdateChart", StripNulls(chartConfig));
+                //return jsRuntime.InvokeAsync<bool>("ChartJSInterop.UpdateChart", StripNulls(chartConfig));
+                return jsRuntime.InvokeAsync<bool>("ChartJSInterop.UpdateChart", chartConfig);
             }
             catch (Exception ex)
             {
@@ -45,7 +50,10 @@ namespace ChartJs.Blazor.ChartJS
             var cleanChartConfigStr = JsonConvert.SerializeObject(chartConfig, JsonSerializerSettings);
 
             // Get back an a dynamic object in order to enhance it with .Net instance handlers
-            dynamic cleanChartConfig = System.Text.Json.JsonSerializer.Deserialize(cleanChartConfigStr, typeof(object));
+            //dynamic cleanChartConfig = System.Text.Json.JsonSerializer.Deserialize<ExpandoObject>(cleanChartConfigStr);
+            dynamic cleanChartConfig = JsonConvert.DeserializeObject(cleanChartConfigStr,
+                typeof(ExpandoObject),
+                new ExpandoObjectConverter());
 
             // Restore any .net refs that need to be passed intact
             var dynamicChartConfig = (dynamic)chartConfig;
@@ -65,7 +73,7 @@ namespace ChartJs.Blazor.ChartJS
                 cleanChartConfig.options.legend.onHover = dynamicChartConfig.Options.Legend.OnHover;
             }
 
-            return cleanChartConfig;
+            return (cleanChartConfig as ExpandoObject).ToList();
         }
 
         private static readonly JsonSerializerSettings JsonSerializerSettings = new JsonSerializerSettings
