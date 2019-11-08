@@ -45,8 +45,8 @@ namespace ChartJs.Blazor.ChartJS.Common.Axes
         /// </summary>
         public GridLines GridLines { get; set; }
 
-        //[JsonProperty("stacked")]
-        //public bool Stacked { get; set; } // <- TODO: remove (probably concrete)
+        [JsonProperty("stacked")]
+        public bool Stacked { get; set; } // <- TODO: remove (probably concrete)
     }
 
     /// <summary>
